@@ -5,6 +5,7 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 
 export default function Home({allPostsData}) {
+  console.log('allPostsData', allPostsData)
   return (
     <Layout home>
       <Head>
@@ -14,16 +15,24 @@ export default function Home({allPostsData}) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, date, title, category, due }) => (
+            <>
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              Titre : {title}
               <br />
               {id}
               <br />
-              {date}
+              Cr&eacute;ation : {date}
+              {category && <br />}
+              {category && 'Cat&eacute;gorie : ' + category}
+              {due && <br /> }
+              {due && 'Pour le : ' +due}
             </li>
+               <hr/>
+               </>
           ))}
         </ul>
+     
       </section>
     </Layout>
   )
